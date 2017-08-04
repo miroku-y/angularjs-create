@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>点击生成相同结构元素</title>
+  <script src="angular.min.js"></script> 
+  <script src="createElmentCtrl.js"></script>
+  <style>
+    .cover-map,.link-obj{display: flex;justify-content: inherit;align-items: center;}
+    .create-group{    padding: 5px;border: 1px solid #7b5f5f;}
+    .cover-map>b,.link-obj>b{cursor:pointer;position: absolute;right: 30px;}
+    .colum-one{width:12%;display:inline-block;}
+    ul,li{list-style:none;}
+    .img-box{width:50%;display:inline-block;height:10px;}
+    .cover-map>p>label{border:1px solid #111;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div ng-controller="creatElmentCtrl">
+    <div>
+      <ul>
+        <li ng-repeat="c in obj.repeatArr">
+          <!-- <createbox ></createbox> -->
+          <div class="create-group"  obj="obj">
+            <div class="cover-map">
+              <span class="colum-one">封面图</span>
+              <p>
+                <label for="{{'file'+c.key}}">上传图片</label>
+                <input type="file" id="{{'file'+c.key}}" style="display:none;" onchange="angular.element(this).scope().pullImg(this.files)">
+                <span class="img-box"><img src="" alt=""></span>
+              </p>
+              <span>建议不要上传1g图片</span>
+              <b style="transform:rotate(130deg)" ng-click="minusBanner($index)" ng-show="c.hideMinus">+</b>
+            </div>
+            <div class="link-obj">
+              <span class="colum-one">链接地址</span>
+              <input type="text" placeholder="请输入准确的地址"/>
+              <b ng-click="addBanner($index)" ng-show="c.hideAdd">+</b>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+   <!-- 引入你的 angularJs 文件 -->
+  
+</body>
+</html>
